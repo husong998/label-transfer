@@ -21,6 +21,11 @@
 
 #include <vector>
 
+#include <opencv2/core.hpp>
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/highgui.hpp>
+
 #include "qt/drawables/drawable_cloud.h"
 #include "qt/drawables/drawable_cube.h"
 #include "qt/utils/utils.h"
@@ -238,6 +243,9 @@ void OpenGlFolderPlayer::onSliderMovedTo(int cloud_number) {
   fprintf(stderr, "[TIMER]: load cloud in %lu microsecs\n",
           timer.measure(Timer::Units::Micro));
   _current_full_depth_image = _cloud->projection_ptr()->depth_image();
+  cv::imshow("000",_current_full_depth_image);
+  // cv::namedWindow( "000" , 0x00000001 );
+  // cv::waitKey(0);
 
   ui->lbl_cloud_name->setText(QString::fromStdString(file_name));
 

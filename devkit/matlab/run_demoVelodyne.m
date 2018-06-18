@@ -35,10 +35,10 @@ img = imread(sprintf('%s/image_%02d/data/%010d.png',base_dir,cam,frame));
 fig = figure('Position',[20 100 size(img,2) size(img,1)]); axes('Position',[0 0 1 1]);
 imshow(img); hold on;
 
-% load velodyne points
-fid = fopen(sprintf('%s/velodyne_points/data/%010d.bin',base_dir,frame),'rb');
-velo = fread(fid,[4 inf],'single')';
-velo = velo(1:5:end,:); % remove every 5th point for display speed
+% % load velodyne points
+% fid = fopen(sprintf('%s/velodyne_points/data/%010d.bin',base_dir,frame),'rb');
+% velo = fread(fid,[4 inf],'single')';
+% velo = velo(1:5:end,:); % remove every 5th point for display speed
 
 % load 3d bounding boxes from FRIBS
 fid=fopen('/home/husong/kitti/outfile','r');
@@ -65,18 +65,18 @@ for i=1:size(dim,1)
 end
 fclose(fid);
 
-% remove all points behind image plane (approximation
-idx = velo(:,1)<5;
-velo(idx,:) = [];
+% % remove all points behind image plane (approximation
+% idx = velo(:,1)<5;
+% velo(idx,:) = [];
 
 % project to image plane (exclude luminance)
-velo_img = project(velo(:,1:3),P_velo_to_img);
-for i=1:size(bbox,1)
-    for j=1:8
-        bbox_img=project(bbox(i,j,:),P_velo_to_img);
-    end
-    bboxctr_img=project(bbox(i,9,:),P_velo_to_img);
-end
+% velo_img = project(velo(:,1:3),P_velo_to_img);
+% for i=1:size(bbox,1)
+%     for j=1:8
+%         bbox_img=project(bbox(i,j,:),P_velo_to_img);
+%     end
+%     bboxctr_img=project(bbox(i,9,:),P_velo_to_img);
+% end
 bbox_img=project(bbox(:,:),P_velo_to_img);
 bboxctr_img=project(pos(:,:),P_velo_to_img);
 % plot points
