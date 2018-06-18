@@ -1,0 +1,2 @@
+/usr/bin/ar qc libproj.a  CMakeFiles/proj.dir/projection.cpp.o
+/usr/bin/ranlib libproj.a

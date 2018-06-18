@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/husong/kitti/labeltrans/projection.cpp
+projection.h
+/home/husong/kitti/labeltrans/projection.h
+
+/home/husong/kitti/labeltrans/projection.h
+
