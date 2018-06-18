@@ -13,7 +13,7 @@ using namespace cv;
 
 typedef struct{
   char label[20];
-  Point tl,tr,bl,br,ctr;
+  Rect bbox;
 } obj2d;
 
 typedef struct{
@@ -31,18 +31,17 @@ int main()
   FILE* fi=fopen("../yoloresult/result","r");
   int i=0,left,right,top,bot;
   vector<obj2d> yolo;
+  vector<obj3d> fribs;
+
   obj2d s;
+  Point tl,br;
   while(fgets(s.label,20,fi)){
     fscanf(fi,"%d%d%d%d\n",&left,&right,&top,&bot);
-    s.tl=Point(left,top);
-    s.tr=Point(right,top);
-    s.bl=Point(left,bot);
-    s.br=Point(right,bot);
-    s.ctr=Point((left+right+1)/2,(top+bot+1)/2);
-    line(img, s.tl, s.tr, Scalar(0,0,100), 2, FILLED);
-    line(img, s.tl, s.bl, Scalar(0,0,100), 2, FILLED);
-    line(img, s.tr, s.br, Scalar(0,0,100), 2, FILLED);
-    line(img, s.bl, s.br, Scalar(0,0,100), 2, FILLED);
+    s.label[strlen(s.label)-1]=0;
+    tl=Point(left,top);
+    br=Point(right,bot);
+    s.bbox=Rect(tl,br);
+    rectangle(img,s.bbox,Scalar(0,0,255));
     yolo.push_back(s);
   } 
   fclose(fi);
@@ -57,31 +56,33 @@ int main()
     sf.ctr=Point(0.5+pctr[0],0.5+pctr[1]);
     circle(img, sf.ctr, 2, Scalar(0,255,0), FILLED, FILLED);
 
-    corners[0]=ctr[0]-dim[0];corners[1]=ctr[1]-dim[1];corners[2]=ctr[2]-dim[2];
+    corners[0]=ctr[0]-dim[0]/2;corners[1]=ctr[1]-dim[1]/2;corners[2]=ctr[2]-dim[2]/2;
     pctr=proj(corners);
     sf.br1=Point(pctr[0]+0.5,pctr[1]+0.5);
-    corners[0]=ctr[0]-dim[0];corners[1]=ctr[1]-dim[1];corners[2]=ctr[2]+dim[2];
+    corners[0]=ctr[0]-dim[0]/2;corners[1]=ctr[1]-dim[1]/2;corners[2]=ctr[2]+dim[2]/2;
     pctr=proj(corners);
     sf.tr1=Point(pctr[0]+0.5,pctr[1]+0.5);
-    corners[0]=ctr[0]-dim[0];corners[1]=ctr[1]+dim[1];corners[2]=ctr[2]+dim[2];
+    corners[0]=ctr[0]-dim[0]/2;corners[1]=ctr[1]+dim[1]/2;corners[2]=ctr[2]+dim[2]/2;
     pctr=proj(corners);
     sf.tl1=Point(pctr[0]+0.5,pctr[1]+0.5);
-    corners[0]=ctr[0]-dim[0];corners[1]=ctr[1]+dim[1];corners[2]=ctr[2]-dim[2];
+    corners[0]=ctr[0]-dim[0]/2;corners[1]=ctr[1]+dim[1]/2;corners[2]=ctr[2]-dim[2]/2;
     pctr=proj(corners);
     sf.bl1=Point(pctr[0]+0.5,pctr[1]+0.5);
 
-    corners[0]=ctr[0]+dim[0];corners[1]=ctr[1]-dim[1];corners[2]=ctr[2]-dim[2];
+    corners[0]=ctr[0]+dim[0]/2;corners[1]=ctr[1]-dim[1]/2;corners[2]=ctr[2]-dim[2]/2;
     pctr=proj(corners);
     sf.br2=Point(pctr[0]+0.5,pctr[1]+0.5);
-    corners[0]=ctr[0]+dim[0];corners[1]=ctr[1]-dim[1];corners[2]=ctr[2]+dim[2];
+    corners[0]=ctr[0]+dim[0]/2;corners[1]=ctr[1]-dim[1]/2;corners[2]=ctr[2]+dim[2]/2;
     pctr=proj(corners);
     sf.tr2=Point(pctr[0]+0.5,pctr[1]+0.5);
-    corners[0]=ctr[0]+dim[0];corners[1]=ctr[1]+dim[1];corners[2]=ctr[2]+dim[2];
+    corners[0]=ctr[0]+dim[0]/2;corners[1]=ctr[1]+dim[1]/2;corners[2]=ctr[2]+dim[2]/2;
     pctr=proj(corners);
     sf.tl2=Point(pctr[0]+0.5,pctr[1]+0.5);
-    corners[0]=ctr[0]+dim[0];corners[1]=ctr[1]+dim[1];corners[2]=ctr[2]-dim[2];
+    corners[0]=ctr[0]+dim[0]/2;corners[1]=ctr[1]+dim[1]/2;corners[2]=ctr[2]-dim[2]/2;
     pctr=proj(corners);
     sf.bl2=Point(pctr[0]+0.5,pctr[1]+0.5);
+
+    fribs.push_back(sf);
 
     line(img, sf.tl1, sf.tr1, Scalar(0,100,0), 1, LINE_8);
     line(img, sf.tl1, sf.bl1, Scalar(0,100,0), 1, LINE_8);
@@ -96,6 +97,16 @@ int main()
     line(img, sf.tr1, sf.tr2, Scalar(0,100,0), 1, LINE_8);
     line(img, sf.br1, sf.br2, Scalar(0,100,0), 1, LINE_8);
     line(img, sf.bl1, sf.bl2, Scalar(0,100,0), 1, LINE_8);
+  }
+
+  for(vector<obj2d>::iterator ityolo=yolo.begin();ityolo!=yolo.end();ityolo++){
+    for(vector<obj3d>::iterator itfribs=fribs.begin();
+        itfribs!=fribs.end();itfribs++){
+      if(itfribs->ctr.inside(ityolo->bbox)){
+        putText(img,ityolo->label,itfribs->ctr,FONT_HERSHEY_PLAIN,1,
+            Scalar(0,255,0));
+      }
+    }
   }
   imshow("000",img);
   namedWindow( "000", WINDOW_AUTOSIZE );
