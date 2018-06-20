@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+
+project(bin_read)
+
+find_package(PCL 1.2 REQUIRED)
+
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
+
+add_executable (bin_read utils.cpp)
+target_link_libraries (bin_read ${PCL_LIBRARIES})
+set(CMAKE_BUILD_TYPE Debug)
