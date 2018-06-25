@@ -243,6 +243,7 @@ void OpenGlFolderPlayer::onSliderMovedTo(int cloud_number) {
   fprintf(stderr, "[TIMER]: load cloud in %lu microsecs\n",
           timer.measure(Timer::Units::Micro));
   _current_full_depth_image = _cloud->projection_ptr()->depth_image();
+  // cv::imwrite("test.png",_current_full_depth_image);
   // cv::imshow("000",_current_full_depth_image);
   // cv::namedWindow( "000" , 0x00000001 );
   // cv::waitKey(0);

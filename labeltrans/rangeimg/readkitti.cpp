@@ -1,9 +1,10 @@
-#include <string>
 #include <cstdio>
 
 #include <pcl/point_types.h>
 #include <pcl/point_cloud.h>
-#include <pcl/visualization/cloud_viewer.h>
+//#include <pcl/visualization/cloud_viewer.h>
+
+#include "readkitti.h"
 
 using namespace std;
 
@@ -31,18 +32,4 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr readkitti(string file){
   }
   fclose(stream);
   return cloud;
-}
-
-int main(){
-  //loading pcd
-  string file="/home/husong/kitti/2011_09_26/2011_09_26_drive_0001_sync/velodyne_points/data/0000000000.bin";
-  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud=readkitti(file);
-
-  //visualizing pcd
-  pcl::visualization::CloudViewer viewer ("Simple Cloud Viewer");
-  viewer.showCloud (cloud);
-  while (!viewer.wasStopped ())
-  {
-  }
-  return 0;
 }

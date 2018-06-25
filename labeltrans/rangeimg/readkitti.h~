@@ -1,0 +1,9 @@
+#ifndef READKITTI_H
+#define READKITTI_H
+
+#include <pcl/point_types.h>
+#include <string>
+
+pcl::PointCloud<pcl::PointXYZ>::Ptr readkitti(std::string);
+
+#endif

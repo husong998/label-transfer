@@ -37,7 +37,8 @@ int main()
   Point tl,br;
   while(fgets(s.label,20,fi)){
     fscanf(fi,"%d%d%d%d\n",&left,&right,&top,&bot);
-    s.label[strlen(s.label)-1]=0;
+    if(s.label[strlen(s.label)-1]=='\n')
+      s.label[strlen(s.label)-1]=0;
     tl=Point(left,top);
     br=Point(right,bot);
     s.bbox=Rect(tl,br);

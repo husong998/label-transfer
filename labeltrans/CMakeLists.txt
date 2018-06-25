@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.1)
 project (labeltrans)
 include_directories("${PROJECT_BINARY_DIR}")
 add_library(proj projection.cpp)

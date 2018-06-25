@@ -1,3 +1,0 @@
-/home/husong/kitti/labeltrans/rangeimg/CMakeFiles/rebuild_cache.dir
-/home/husong/kitti/labeltrans/rangeimg/CMakeFiles/edit_cache.dir
-/home/husong/kitti/labeltrans/rangeimg/CMakeFiles/bin_read.dir
