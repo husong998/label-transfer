@@ -1,11 +1,10 @@
-#include <opencv2/core.hpp>
-#include <opencv2/imgcodecs.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/highgui.hpp>
+#include <opencv2/opencv.hpp>
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
 #include <sstream>
+
 #include "projection.h"
 
 using namespace std;
@@ -20,6 +19,7 @@ typedef struct{
   char label[20];
   Point tl1,tr1,bl1,br1,ctr;
   Point tl2,tr2,bl2,br2;
+  float x_min,x_max,y_min,y_max,z_min,z_max;
 } obj3d;
 
 int main()
@@ -28,7 +28,7 @@ int main()
   Mat img;
   img=imread(name,IMREAD_COLOR);
 
-  FILE* fi=fopen("../yoloresult/result","r");
+  FILE* fi=fopen("../../yoloresult/result","r");
   int i=0,left,right,top,bot;
   vector<obj2d> yolo;
   vector<obj3d> fribs;
@@ -48,7 +48,7 @@ int main()
   fclose(fi);
 
   obj3d sf;
-  fi=fopen("../outfile","r");
+  fi=fopen("../../outfile","r");
   long double ctr[3],dim[3],corners[3];
   while(3==fscanf(fi,"%Lf%Lf%Lf",&ctr[0],&ctr[1],&ctr[2])){
     fscanf(fi,"%Lf%Lf%Lf",&dim[0],&dim[1],&dim[2]);
@@ -56,6 +56,10 @@ int main()
     long double *pctr=proj(ctr);
     sf.ctr=Point(0.5+pctr[0],0.5+pctr[1]);
     circle(img, sf.ctr, 2, Scalar(0,255,0), FILLED, FILLED);
+
+    sf.x_min=ctr[0]-dim[0]/2;sf.x_max=ctr[0]+dim[0]/2;
+    sf.y_min=ctr[1]-dim[1]/2;sf.y_max=ctr[1]+dim[1]/2;
+    sf.z_min=ctr[2]-dim[2]/2;sf.z_max=ctr[2]+dim[2]/2;
 
     corners[0]=ctr[0]-dim[0]/2;corners[1]=ctr[1]-dim[1]/2;corners[2]=ctr[2]-dim[2]/2;
     pctr=proj(corners);
@@ -100,12 +104,15 @@ int main()
     line(img, sf.bl1, sf.bl2, Scalar(0,100,0), 1, LINE_8);
   }
 
+  vector<obj3d> valid_transfer;
   for(vector<obj2d>::iterator ityolo=yolo.begin();ityolo!=yolo.end();ityolo++){
     for(vector<obj3d>::iterator itfribs=fribs.begin();
         itfribs!=fribs.end();itfribs++){
       if(itfribs->ctr.inside(ityolo->bbox)){
         putText(img,ityolo->label,itfribs->ctr,FONT_HERSHEY_PLAIN,1,
             Scalar(0,255,0));
+        itfribs->label=ityolo->label;
+        valid_transfer.push_back(*itfribs);
       }
     }
   }

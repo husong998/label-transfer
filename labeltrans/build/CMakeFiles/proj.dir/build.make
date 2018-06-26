@@ -46,7 +46,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/husong/kitti/labeltrans
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/husong/kitti/labeltrans
+CMAKE_BINARY_DIR = /home/husong/kitti/labeltrans/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/proj.dir/depend.make
@@ -58,8 +58,8 @@ include CMakeFiles/proj.dir/progress.make
 include CMakeFiles/proj.dir/flags.make
 
 CMakeFiles/proj.dir/projection.cpp.o: CMakeFiles/proj.dir/flags.make
-CMakeFiles/proj.dir/projection.cpp.o: projection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/husong/kitti/labeltrans/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/proj.dir/projection.cpp.o"
+CMakeFiles/proj.dir/projection.cpp.o: ../projection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/husong/kitti/labeltrans/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/proj.dir/projection.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/proj.dir/projection.cpp.o -c /home/husong/kitti/labeltrans/projection.cpp
 
 CMakeFiles/proj.dir/projection.cpp.i: cmake_force
@@ -91,7 +91,7 @@ proj_EXTERNAL_OBJECTS =
 libproj.a: CMakeFiles/proj.dir/projection.cpp.o
 libproj.a: CMakeFiles/proj.dir/build.make
 libproj.a: CMakeFiles/proj.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/husong/kitti/labeltrans/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libproj.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/husong/kitti/labeltrans/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libproj.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/proj.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/proj.dir/link.txt --verbose=$(VERBOSE)
 
@@ -109,6 +109,6 @@ CMakeFiles/proj.dir/clean:
 .PHONY : CMakeFiles/proj.dir/clean
 
 CMakeFiles/proj.dir/depend:
-	cd /home/husong/kitti/labeltrans && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/husong/kitti/labeltrans /home/husong/kitti/labeltrans /home/husong/kitti/labeltrans /home/husong/kitti/labeltrans /home/husong/kitti/labeltrans/CMakeFiles/proj.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/husong/kitti/labeltrans/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/husong/kitti/labeltrans /home/husong/kitti/labeltrans /home/husong/kitti/labeltrans/build /home/husong/kitti/labeltrans/build /home/husong/kitti/labeltrans/build/CMakeFiles/proj.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/proj.dir/depend
 

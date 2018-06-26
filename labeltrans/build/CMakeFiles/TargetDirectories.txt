@@ -1,0 +1,4 @@
+/home/husong/kitti/labeltrans/build/CMakeFiles/rebuild_cache.dir
+/home/husong/kitti/labeltrans/build/CMakeFiles/edit_cache.dir
+/home/husong/kitti/labeltrans/build/CMakeFiles/main.dir
+/home/husong/kitti/labeltrans/build/CMakeFiles/proj.dir
