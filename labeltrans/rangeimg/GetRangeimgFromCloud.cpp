@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//Find the nearest row number and column number of a 3D Velodyne point
 int find_nearest(vector<float>& angles, float angle)
 {
   int found=0;
@@ -29,7 +30,7 @@ int find_nearest(vector<float>& angles, float angle)
 
 cv::Mat GetRangeIMG(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud)
 {
-  //image dimension is 870x64
+  //image dimension is 64x870
   cv::Mat rangeimg = cv::Mat::zeros(64,870, CV_32F);
 
   //initialize angle values for rows
