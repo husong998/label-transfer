@@ -15,6 +15,8 @@ void DrawableCube::Draw() const {
     glColor3f(0.3f, 0.3f, 0.3f);
   } else {
     glColor3f(_color[0], _color[1], _color[2]);
+    printf("%f %f %f\n%f %f %f\n\n", _center.x(), _center.y(),
+      _center.z(), _scale.x(), _scale.y(), _scale.z());
   }
   glLineWidth(4.0f);
   glBegin(GL_LINE_STRIP);

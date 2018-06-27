@@ -20,6 +20,7 @@
 #include <visualization/visualizer.h>
 
 #include <vector>
+#include <cstring>
 
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
@@ -238,6 +239,13 @@ void OpenGlFolderPlayer::onSliderMovedTo(int cloud_number) {
   fprintf(stderr, "loading cloud from: %s\n",
           _file_names[cloud_number].c_str());
   Timer timer;
+
+//open text file to store bounding boxes
+  char output[256];
+  strcpy(output,_file_names[cloud_number].c_str());
+  strtok(output,".");
+  freopen(output,"w",stdout);
+
   const auto &file_name = _file_names[cloud_number];
   _cloud = CloudFromFile(file_name, *_proj_params);
   fprintf(stderr, "[TIMER]: load cloud in %lu microsecs\n",
