@@ -3,3 +3,4 @@ frisb_post_proc
 outfile
 output
 .gitignore~
+darknet/yolov3.weights

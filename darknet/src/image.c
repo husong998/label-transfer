@@ -239,7 +239,6 @@ image **load_alphabet()
 void draw_detections(image im, detection *dets, int num, float thresh, char **names, image **alphabet, int classes)
 {
     int i,j;
-    FILE* fo=fopen("/home/husong/kitti/yoloresult/result","a");
 
     for(i = 0; i < num; ++i){
         char labelstr[4096] = {0};
@@ -253,8 +252,7 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
                     strcat(labelstr, ", ");
                     strcat(labelstr, names[j]);
                 }
-                printf("%s: %.0f%%\n", names[j], dets[i].prob[j]*100);
-                fprintf(fo,"%s\n",names[j]);
+                printf("%s\n", names[j]);
             }
         }
         if(class >= 0){
@@ -280,6 +278,7 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             rgb[1] = green;
             rgb[2] = blue;
             box b = dets[i].bbox;
+            //printf("%f %f %f %f\n", b.x, b.y, b.w, b.h);
 
             int left  = (b.x-b.w/2.)*im.w;
             int right = (b.x+b.w/2.)*im.w;
@@ -291,7 +290,8 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             if(top < 0) top = 0;
             if(bot > im.h-1) bot = im.h-1;
 
-            fprintf(fo,"%d %d %d %d\n", left, right, top, bot);
+            printf("%d %d %d %d\n", left, right, top, bot);
+
             draw_box_width(im, left, top, right, bot, width, red, green, blue);
             if (alphabet) {
                 image label = get_label(alphabet, labelstr, (im.h*.03));
@@ -309,8 +309,6 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             }
         }
     }
-    fprintf(fo,"\n");
-    fclose(fo);
 }
 
 void transpose_image(image im)

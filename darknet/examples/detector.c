@@ -1,5 +1,7 @@
 #include "darknet.h"
 
+#include <dirent.h>
+
 static int coco_ids[] = {1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,27,28,31,32,33,34,35,36,37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,67,70,72,73,74,75,76,77,78,79,80,81,82,84,85,86,87,88,89,90};
 
 
@@ -561,7 +563,6 @@ void validate_detector_recall(char *cfgfile, char *weightfile)
 
 void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filename, float thresh, float hier_thresh, char *outfile, int fullscreen)
 {
-    FILE *fi2=fopen(strcat("/home/husong/kitti/yoloresult/",filename),"w");
     list *options = read_data_cfg(datacfg);
     char *name_list = option_find_str(options, "names", "data/names.list");
     char **names = get_labels(name_list);
@@ -571,20 +572,25 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
     set_batch_network(net, 1);
     srand(2222222);
     double time;
-    char buff[256],output[256];
-    char *input = buff;
+    char buff[256];
+    char *input = buff, *output = buff;
     float nms=.45;
 
-    FILE* fi=fopen("input","r");
-    while(1){
+    DIR *dir;
+    struct dirent *ent;
+    dir=opendir("/home/husong/kitti/2011_09_26/2011_09_26_drive_0001_sync/image_00/data/");
+    while((ent = readdir(dir)) != NULL){
+        if (ent->d_name[0] != '0') continue;
         if(filename){
             strncpy(input, filename, 256);
         } else {
-            printf("Enter Image Path: ");
+            fprintf(stderr, "Enter Image Path: ");
             fflush(stdout);
-            input = fgets(input, 256, fi);
-            if(!input) return;
-            strtok(input, "\n");
+            strcpy(input, "/home/husong/kitti/2011_09_26/2011_09_26_drive_0001_sync/image_00/data/");
+            strcat(input, ent->d_name);
+            // input = fgets(input, 256, stdin);
+            // if(!input) return;
+            // strtok(input, "\n");
         }
         image im = load_image_color(input,0,0);
         image sized = letterbox_image(im, net->w, net->h);
@@ -598,24 +604,26 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         float *X = sized.data;
         time=what_time_is_it_now();
         network_predict(net, X);
-        printf("%s: Predicted in %f seconds.\n", input, what_time_is_it_now()-time);
+        fprintf(stderr, "%s: Predicted in %f seconds.\n", input, what_time_is_it_now()-time);
         int nboxes = 0;
         detection *dets = get_network_boxes(net, im.w, im.h, thresh, hier_thresh, 0, 1, &nboxes);
         //printf("%d\n", nboxes);
         //if (nms) do_nms_obj(boxes, probs, l.w*l.h*l.n, l.classes, nms);
         if (nms) do_nms_sort(dets, nboxes, l.classes, nms);
+        strcpy(output, "/home/husong/kitti/yoloresult/");
+        strcat(output, strtok(ent->d_name, "."));
+        freopen(output, "w", stdout);
         draw_detections(im, dets, nboxes, thresh, names, alphabet, l.classes);
         free_detections(dets, nboxes);
         if(outfile){
             save_image(im, outfile);
         }
         else{
-		strcpy(output,"/home/husong/kitti/yoloresult/img/");
-            strcat(output,input+strlen(input)-14);
-	    //puts(output);
-            save_image(im, output);
+            save_image(im, "predictions");
 #ifdef OPENCV
-            cvNamedWindow("predictions", CV_WINDOW_NORMAL); 
+            strcpy(output, "/home/husong/kitti/yoloresult/img/");
+            strcat(output, ent->d_name);
+            cvNamedWindow(output, CV_WINDOW_NORMAL); 
             if(fullscreen){
                 cvSetWindowProperty("predictions", CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
             }
@@ -629,8 +637,6 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         free_image(sized);
         if (filename) break;
     }
-    fclose(fi);
-    fclose(fi2);
 }
 
 /*
