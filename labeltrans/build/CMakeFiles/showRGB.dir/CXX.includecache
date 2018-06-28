@@ -7,8 +7,6 @@
 #IncludeRegexTransform: 
 
 /home/husong/kitti/labeltrans/get_3d_bbox.cpp
-opencv2/opencv.hpp
--
 cstdio
 -
 iostream
@@ -16,6 +14,8 @@ iostream
 fstream
 -
 sstream
+-
+algorithm
 -
 projection.h
 /home/husong/kitti/labeltrans/projection.h
@@ -26,6 +26,8 @@ get_3d_bbox.h
 string
 -
 vector
+-
+opencv2/opencv.hpp
 -
 
 /home/husong/kitti/labeltrans/projection.cpp

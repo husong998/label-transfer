@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/husong/kitti/labeltrans/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -124,17 +124,44 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
-# Target rules for targets named proj
+# Target rules for targets named showRGB
 
 # Build rule for target.
-proj: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 proj
-.PHONY : proj
+showRGB: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 showRGB
+.PHONY : showRGB
 
 # fast build rule for target.
-proj/fast:
-	$(MAKE) -f CMakeFiles/proj.dir/build.make CMakeFiles/proj.dir/build
-.PHONY : proj/fast
+showRGB/fast:
+	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/build
+.PHONY : showRGB/fast
+
+get_3d_bbox.o: get_3d_bbox.cpp.o
+
+.PHONY : get_3d_bbox.o
+
+# target to build an object file
+get_3d_bbox.cpp.o:
+	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/get_3d_bbox.cpp.o
+.PHONY : get_3d_bbox.cpp.o
+
+get_3d_bbox.i: get_3d_bbox.cpp.i
+
+.PHONY : get_3d_bbox.i
+
+# target to preprocess a source file
+get_3d_bbox.cpp.i:
+	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/get_3d_bbox.cpp.i
+.PHONY : get_3d_bbox.cpp.i
+
+get_3d_bbox.s: get_3d_bbox.cpp.s
+
+.PHONY : get_3d_bbox.s
+
+# target to generate assembly for a file
+get_3d_bbox.cpp.s:
+	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/get_3d_bbox.cpp.s
+.PHONY : get_3d_bbox.cpp.s
 
 main.o: main.cpp.o
 
@@ -169,7 +196,7 @@ projection.o: projection.cpp.o
 
 # target to build an object file
 projection.cpp.o:
-	$(MAKE) -f CMakeFiles/proj.dir/build.make CMakeFiles/proj.dir/projection.cpp.o
+	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/projection.cpp.o
 .PHONY : projection.cpp.o
 
 projection.i: projection.cpp.i
@@ -178,7 +205,7 @@ projection.i: projection.cpp.i
 
 # target to preprocess a source file
 projection.cpp.i:
-	$(MAKE) -f CMakeFiles/proj.dir/build.make CMakeFiles/proj.dir/projection.cpp.i
+	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/projection.cpp.i
 .PHONY : projection.cpp.i
 
 projection.s: projection.cpp.s
@@ -187,7 +214,7 @@ projection.s: projection.cpp.s
 
 # target to generate assembly for a file
 projection.cpp.s:
-	$(MAKE) -f CMakeFiles/proj.dir/build.make CMakeFiles/proj.dir/projection.cpp.s
+	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/projection.cpp.s
 .PHONY : projection.cpp.s
 
 # Help Target
@@ -196,10 +223,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... main"
-	@echo "... proj"
+	@echo "... rebuild_cache"
+	@echo "... showRGB"
+	@echo "... get_3d_bbox.o"
+	@echo "... get_3d_bbox.i"
+	@echo "... get_3d_bbox.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

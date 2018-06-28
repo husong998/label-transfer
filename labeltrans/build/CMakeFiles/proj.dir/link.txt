@@ -1,2 +1,1 @@
-/usr/bin/ar qc libproj.a  CMakeFiles/proj.dir/projection.cpp.o
-/usr/bin/ranlib libproj.a
+/usr/bin/c++  -fPIC -g  -shared -Wl,-soname,libproj.so -o libproj.so CMakeFiles/proj.dir/projection.cpp.o CMakeFiles/proj.dir/get_3d_bbox.cpp.o 

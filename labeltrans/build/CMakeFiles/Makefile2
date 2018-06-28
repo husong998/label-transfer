@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/husong/kitti/labeltrans/build
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
-CMakeFiles/main.dir/all: CMakeFiles/proj.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/showRGB.dir/all
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/husong/kitti/labeltrans/build/CMakeFiles --progress-num=1,2 "Built target main"
@@ -76,7 +76,7 @@ all: CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/husong/kitti/labeltrans/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/husong/kitti/labeltrans/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/husong/kitti/labeltrans/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
@@ -97,39 +97,39 @@ clean: CMakeFiles/main.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/proj.dir
+# Target rules for target CMakeFiles/showRGB.dir
 
 # All Build rule for target.
-CMakeFiles/proj.dir/all:
-	$(MAKE) -f CMakeFiles/proj.dir/build.make CMakeFiles/proj.dir/depend
-	$(MAKE) -f CMakeFiles/proj.dir/build.make CMakeFiles/proj.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/husong/kitti/labeltrans/build/CMakeFiles --progress-num=3,4 "Built target proj"
-.PHONY : CMakeFiles/proj.dir/all
+CMakeFiles/showRGB.dir/all:
+	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/depend
+	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/husong/kitti/labeltrans/build/CMakeFiles --progress-num=3,4,5 "Built target showRGB"
+.PHONY : CMakeFiles/showRGB.dir/all
 
 # Include target in all.
-all: CMakeFiles/proj.dir/all
+all: CMakeFiles/showRGB.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/proj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/husong/kitti/labeltrans/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/proj.dir/all
+CMakeFiles/showRGB.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/husong/kitti/labeltrans/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/showRGB.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/husong/kitti/labeltrans/build/CMakeFiles 0
-.PHONY : CMakeFiles/proj.dir/rule
+.PHONY : CMakeFiles/showRGB.dir/rule
 
 # Convenience name for target.
-proj: CMakeFiles/proj.dir/rule
+showRGB: CMakeFiles/showRGB.dir/rule
 
-.PHONY : proj
-
-# clean rule for target.
-CMakeFiles/proj.dir/clean:
-	$(MAKE) -f CMakeFiles/proj.dir/build.make CMakeFiles/proj.dir/clean
-.PHONY : CMakeFiles/proj.dir/clean
+.PHONY : showRGB
 
 # clean rule for target.
-clean: CMakeFiles/proj.dir/clean
+CMakeFiles/showRGB.dir/clean:
+	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/clean
+.PHONY : CMakeFiles/showRGB.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/showRGB.dir/clean
 
 .PHONY : clean
 
