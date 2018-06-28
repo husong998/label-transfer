@@ -19,7 +19,7 @@ typedef struct
   float x_min,x_max,y_min,y_max,z_min,z_max;
 } obj3d;
 
-std::vector<obj3d> get_3d_bbox(std::string input, int&);
+std::vector<obj3d> get_3d_bbox(std::string input, cv::Mat&);
 
 float IOU (obj3d&, obj2d&);
 

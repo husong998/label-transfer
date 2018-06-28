@@ -26,13 +26,12 @@ float IOU (obj3d& fribs_bbox, obj2d& yolo_bbox)
   (fribsRect.area()+yolo_bbox.bbox.area()-Intersection.area());
 }
 
-std::vector<obj3d> get_3d_bbox(string input, int& key)
+std::vector<obj3d> get_3d_bbox(string input, Mat& img)
 {
   const float thresh = 0.5;
 
   String name("/home/husong/kitti/2011_09_26/2011_09_26_drive_0001_sync/image_00/data/"
   +input+".png");
-  Mat img;
   img=imread(name,IMREAD_COLOR);
 
   string path="../../yoloresult/"+input;
@@ -126,7 +125,5 @@ std::vector<obj3d> get_3d_bbox(string input, int& key)
       }
     }
   }
-  imshow("tests",img);
-  key=waitKeyEx();
   return valid_transfer;
 }

@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/husong/kitti/labeltrans/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -124,17 +124,17 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
-# Target rules for targets named showRGB
+# Target rules for targets named CustomLib
 
 # Build rule for target.
-showRGB: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 showRGB
-.PHONY : showRGB
+CustomLib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CustomLib
+.PHONY : CustomLib
 
 # fast build rule for target.
-showRGB/fast:
-	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/build
-.PHONY : showRGB/fast
+CustomLib/fast:
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/build
+.PHONY : CustomLib/fast
 
 get_3d_bbox.o: get_3d_bbox.cpp.o
 
@@ -142,7 +142,7 @@ get_3d_bbox.o: get_3d_bbox.cpp.o
 
 # target to build an object file
 get_3d_bbox.cpp.o:
-	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/get_3d_bbox.cpp.o
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/get_3d_bbox.cpp.o
 .PHONY : get_3d_bbox.cpp.o
 
 get_3d_bbox.i: get_3d_bbox.cpp.i
@@ -151,7 +151,7 @@ get_3d_bbox.i: get_3d_bbox.cpp.i
 
 # target to preprocess a source file
 get_3d_bbox.cpp.i:
-	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/get_3d_bbox.cpp.i
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/get_3d_bbox.cpp.i
 .PHONY : get_3d_bbox.cpp.i
 
 get_3d_bbox.s: get_3d_bbox.cpp.s
@@ -160,7 +160,7 @@ get_3d_bbox.s: get_3d_bbox.cpp.s
 
 # target to generate assembly for a file
 get_3d_bbox.cpp.s:
-	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/get_3d_bbox.cpp.s
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/get_3d_bbox.cpp.s
 .PHONY : get_3d_bbox.cpp.s
 
 main.o: main.cpp.o
@@ -196,7 +196,7 @@ projection.o: projection.cpp.o
 
 # target to build an object file
 projection.cpp.o:
-	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/projection.cpp.o
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/projection.cpp.o
 .PHONY : projection.cpp.o
 
 projection.i: projection.cpp.i
@@ -205,7 +205,7 @@ projection.i: projection.cpp.i
 
 # target to preprocess a source file
 projection.cpp.i:
-	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/projection.cpp.i
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/projection.cpp.i
 .PHONY : projection.cpp.i
 
 projection.s: projection.cpp.s
@@ -214,8 +214,62 @@ projection.s: projection.cpp.s
 
 # target to generate assembly for a file
 projection.cpp.s:
-	$(MAKE) -f CMakeFiles/showRGB.dir/build.make CMakeFiles/showRGB.dir/projection.cpp.s
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/projection.cpp.s
 .PHONY : projection.cpp.s
+
+rangeimg/GetRangeimgFromCloud.o: rangeimg/GetRangeimgFromCloud.cpp.o
+
+.PHONY : rangeimg/GetRangeimgFromCloud.o
+
+# target to build an object file
+rangeimg/GetRangeimgFromCloud.cpp.o:
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/rangeimg/GetRangeimgFromCloud.cpp.o
+.PHONY : rangeimg/GetRangeimgFromCloud.cpp.o
+
+rangeimg/GetRangeimgFromCloud.i: rangeimg/GetRangeimgFromCloud.cpp.i
+
+.PHONY : rangeimg/GetRangeimgFromCloud.i
+
+# target to preprocess a source file
+rangeimg/GetRangeimgFromCloud.cpp.i:
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/rangeimg/GetRangeimgFromCloud.cpp.i
+.PHONY : rangeimg/GetRangeimgFromCloud.cpp.i
+
+rangeimg/GetRangeimgFromCloud.s: rangeimg/GetRangeimgFromCloud.cpp.s
+
+.PHONY : rangeimg/GetRangeimgFromCloud.s
+
+# target to generate assembly for a file
+rangeimg/GetRangeimgFromCloud.cpp.s:
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/rangeimg/GetRangeimgFromCloud.cpp.s
+.PHONY : rangeimg/GetRangeimgFromCloud.cpp.s
+
+rangeimg/readkitti.o: rangeimg/readkitti.cpp.o
+
+.PHONY : rangeimg/readkitti.o
+
+# target to build an object file
+rangeimg/readkitti.cpp.o:
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/rangeimg/readkitti.cpp.o
+.PHONY : rangeimg/readkitti.cpp.o
+
+rangeimg/readkitti.i: rangeimg/readkitti.cpp.i
+
+.PHONY : rangeimg/readkitti.i
+
+# target to preprocess a source file
+rangeimg/readkitti.cpp.i:
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/rangeimg/readkitti.cpp.i
+.PHONY : rangeimg/readkitti.cpp.i
+
+rangeimg/readkitti.s: rangeimg/readkitti.cpp.s
+
+.PHONY : rangeimg/readkitti.s
+
+# target to generate assembly for a file
+rangeimg/readkitti.cpp.s:
+	$(MAKE) -f CMakeFiles/CustomLib.dir/build.make CMakeFiles/CustomLib.dir/rangeimg/readkitti.cpp.s
+.PHONY : rangeimg/readkitti.cpp.s
 
 # Help Target
 help:
@@ -223,10 +277,10 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... main"
-	@echo "... rebuild_cache"
-	@echo "... showRGB"
+	@echo "... CustomLib"
 	@echo "... get_3d_bbox.o"
 	@echo "... get_3d_bbox.i"
 	@echo "... get_3d_bbox.s"
@@ -236,6 +290,12 @@ help:
 	@echo "... projection.o"
 	@echo "... projection.i"
 	@echo "... projection.s"
+	@echo "... rangeimg/GetRangeimgFromCloud.o"
+	@echo "... rangeimg/GetRangeimgFromCloud.i"
+	@echo "... rangeimg/GetRangeimgFromCloud.s"
+	@echo "... rangeimg/readkitti.o"
+	@echo "... rangeimg/readkitti.i"
+	@echo "... rangeimg/readkitti.s"
 .PHONY : help
 
 
