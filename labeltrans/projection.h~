@@ -1,6 +1,0 @@
-#ifndef PROJ_H
-#define PROJ_H
-
-double* proj(double*);
-
-#endif

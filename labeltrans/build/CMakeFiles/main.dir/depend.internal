@@ -4,6 +4,7 @@
 CMakeFiles/main.dir/main.cpp.o
  /home/husong/kitti/labeltrans/get_3d_bbox.h
  /home/husong/kitti/labeltrans/main.cpp
+ /home/husong/kitti/labeltrans/rangeimg/GetRangeimgFromCloud.h
  /home/husong/kitti/labeltrans/rangeimg/readkitti.h
  /opt/ros/kinetic/include/opencv-3.3.1-dev/opencv/cxcore.h
  /opt/ros/kinetic/include/opencv-3.3.1-dev/opencv2/calib3d.hpp
@@ -486,6 +487,13 @@ CMakeFiles/main.dir/main.cpp.o
  /usr/local/include/pcl-1.8/pcl/conversions.h
  /usr/local/include/pcl-1.8/pcl/correspondence.h
  /usr/local/include/pcl-1.8/pcl/exceptions.h
+ /usr/local/include/pcl-1.8/pcl/filters/boost.h
+ /usr/local/include/pcl-1.8/pcl/filters/filter.h
+ /usr/local/include/pcl-1.8/pcl/filters/filter_indices.h
+ /usr/local/include/pcl-1.8/pcl/filters/impl/filter.hpp
+ /usr/local/include/pcl-1.8/pcl/filters/impl/filter_indices.hpp
+ /usr/local/include/pcl-1.8/pcl/filters/impl/passthrough.hpp
+ /usr/local/include/pcl-1.8/pcl/filters/passthrough.h
  /usr/local/include/pcl-1.8/pcl/for_each_type.h
  /usr/local/include/pcl-1.8/pcl/geometry/planar_polygon.h
  /usr/local/include/pcl-1.8/pcl/impl/pcl_base.hpp
@@ -500,6 +508,7 @@ CMakeFiles/main.dir/main.cpp.o
  /usr/local/include/pcl-1.8/pcl/register_point_struct.h
  /usr/local/include/pcl-1.8/pcl/visualization/area_picking_event.h
  /usr/local/include/pcl-1.8/pcl/visualization/boost.h
+ /usr/local/include/pcl-1.8/pcl/visualization/cloud_viewer.h
  /usr/local/include/pcl-1.8/pcl/visualization/common/actor_map.h
  /usr/local/include/pcl-1.8/pcl/visualization/common/common.h
  /usr/local/include/pcl-1.8/pcl/visualization/common/impl/common.hpp
