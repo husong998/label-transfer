@@ -25,12 +25,6 @@ vector
 -
 
 /home/husong/kitti/labeltrans/rangeimg/readkitti.cpp
-cstdio
--
-pcl/point_types.h
--
-pcl/point_cloud.h
--
 readkitti.h
 /home/husong/kitti/labeltrans/rangeimg/readkitti.h
 

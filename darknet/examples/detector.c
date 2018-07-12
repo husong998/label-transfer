@@ -578,7 +578,9 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
 
     DIR *dir;
     struct dirent *ent;
-    dir=opendir("/home/husong/kitti/2011_09_26/2011_09_26_drive_0001_sync/image_00/data/");
+    char BaseDir[256] = "/home/husong/kitti/rangeimg/",
+    OutDir = "/home/husong/yoloresult/";
+    dir=opendir(BaseDir);
     while((ent = readdir(dir)) != NULL){
         if (ent->d_name[0] != '0') continue;
         if(filename){
@@ -586,7 +588,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         } else {
             fprintf(stderr, "Enter Image Path: ");
             fflush(stdout);
-            strcpy(input, "/home/husong/kitti/2011_09_26/2011_09_26_drive_0001_sync/image_00/data/");
+            strcpy(input, BaseDir);
             strcat(input, ent->d_name);
             // input = fgets(input, 256, stdin);
             // if(!input) return;
@@ -610,7 +612,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         //printf("%d\n", nboxes);
         //if (nms) do_nms_obj(boxes, probs, l.w*l.h*l.n, l.classes, nms);
         if (nms) do_nms_sort(dets, nboxes, l.classes, nms);
-        strcpy(output, "/home/husong/kitti/yoloresult/");
+        strcpy(output, OutDir);
         strcat(output, strtok(ent->d_name, "."));
         freopen(output, "w", stdout);
         draw_detections(im, dets, nboxes, thresh, names, alphabet, l.classes);
@@ -621,7 +623,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         else{
             save_image(im, "predictions");
 #ifdef OPENCV
-            strcpy(output, "/home/husong/kitti/yoloresult/img/");
+            strcpy(output, "/home/husong/yoloresult/img/");
             strcat(output, ent->d_name);
             cvNamedWindow(output, CV_WINDOW_NORMAL); 
             if(fullscreen){
